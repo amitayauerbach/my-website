@@ -3,18 +3,20 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main
+      - main  # This means deployment happens only on changes to the 'main' branch
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
+      # Step 1: Check out your code from the repository
       - name: Checkout code
         uses: actions/checkout@v3
 
+      # Step 2: Deploy the website to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./
+          github_token: ${{ secrets.GITHUB_TOKEN }}  # GitHub automatically generates this token
+          publish_dir: ./  # This specifies the directory to deploy (current directory in your case)
